@@ -21,7 +21,7 @@ Current version includes the following variables with default values:
 | `radarr_uid`        | *optional* | Commented out by default |
 | `radarr_group`      | media | The primary group for `radarr_user` |
 | `radarr_group_gid`  | *optional* | Commented out by default |
-| `radarr_base_install_dir` | /opt/radarr | Install directory for radarr |
+| `radarr_base_install_dir` | /opt | Install directory for radarr |
 | `radarr_config_dir` |  /opt/data/radarr | Data directory to store configuration |
 | `radarr_download_url` | https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64| Link to the radarr git hub latest release |
 | `radarr_port` | 7878 | Port in which radarr operates on, to add to Firewalld |
