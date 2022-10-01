@@ -1,0 +1,39 @@
+---
+# tasks file for app configuration
+
+#Setup Radarr
+- name: Download radarr tarball
+  get_url:
+    url:  "{{ radarr_download_url }}"
+    dest: /tmp
+  register: radarr_tarball
+
+# Untar 
+- name: Extract radarr tarball
+  unarchive:
+    src: "{{ radarr_tarball['dest'] }}"
+    dest: "{{ radarr_base_install_dir }}"
+    owner: "{{ radarr_user }}"
+    group: "{{ radarr_group }}"
+    remote_src: yes
+
+- name: Set File perms on radarr dir
+  file:
+    path: "{{ radarr_base_install_dir }}/Radarr"
+    owner: "{{ radarr_user }}"
+    group: "{{ radarr_group }}"
+    recurse: yes
+
+# Ensure data dir exists
+- name: Create data directory
+  file:
+    path: "{{ radarr_config_dir }}"
+    owner: "{{ radarr_user }}"
+    group: "{{ radarr_group }}"
+    state: directory
+
+# Remove tarball from /tmp
+- name: Remove tarball from download
+  file:
+    path: "{{ radarr_tarball['dest'] }}"
+    state: absent

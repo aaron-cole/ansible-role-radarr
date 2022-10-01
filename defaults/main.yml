@@ -1,0 +1,15 @@
+---
+# defaults file for radarr
+
+radarr_user: radarr
+# radarr_uid:
+radarr_group: media
+# radarr_group_gid:
+radarr_base_install_dir: /opt
+radarr_config_dir: /opt/data/radarr
+radarr_download_url: "https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64"
+radarr_port: 7878
+radarr_packages:
+  - curl
+  - sqlite
+ 

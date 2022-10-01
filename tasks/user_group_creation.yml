@@ -1,0 +1,24 @@
+---
+# user group tasks for radarr
+
+# User Group Creation
+- name: Create group for radarr if defined
+  group:
+    name: "{{ radarr_group }}"
+    gid: "{{ radarr_group_gid | default(omit) }}"
+    state: present
+    system: yes
+  when: radarr_group is defined
+
+# Create our user we will use
+- name: Create radarr user
+  user:
+    name: "{{ radarr_user }}"
+    state: present
+    shell: /sbin/nologin
+    group: "{{ radarr_group }}"
+    system: yes
+    home: "{{ radarr_base_install_dir }}/radarr"
+    comment: "radarr service account"
+    uid: "{{ radarr_uid | default(omit) }}"
+    create_home: no
